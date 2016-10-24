@@ -1,0 +1,16 @@
+<h1>Instapic</h1>
+<p></p>
+
+<p>Create a new user here.</p>
+<form action="/users" method="post">
+	<input type="text" name="name" placeholder="Name">
+	<input type="password" name="password" placeholder="Password">
+	<input type="submit">
+</form>
+
+<p>Here is the list of users on this site.</p>
+<ul>
+{{#each users}}
+	 <li><a href="/users/{{this.name}}">{{this.name}}</a></li>
+{{/each}}
+</ul>

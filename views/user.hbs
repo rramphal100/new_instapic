@@ -1,0 +1,11 @@
+<h1>Instapic</h1>
+<p></p>
+<h2>{{name}}</h2>
+<p></p>
+<h3>{{name}}'s Pictures</h3>
+
+<ol>
+{{#each pics}}
+	<li>{{this.description}}<p></p><img src='../{{this.src}}'></li>
+{{/each}}
+</ol>

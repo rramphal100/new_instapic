@@ -1,0 +1,5 @@
+<h1>Instapic</h1>
+<p></p>
+<p>Here is the list of users on this site.</p>
+<ul>
+	{{#each 

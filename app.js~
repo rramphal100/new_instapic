@@ -1,0 +1,77 @@
+var express = require("express");
+var promise = require("bluebird");
+var path = require("path");
+var app = express();
+
+var options = {
+	promiseLib: promise
+};
+
+var pgp = require("pg-promise")(options);
+
+//database access credentials
+var un = "postgres";
+var pw = "12345";
+var port = 5432;
+
+var db = pgp("postgres://$1:$2@localhost:$3/instapic", {un, pw, port});
+
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(express.static("public"));
+
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "views"));
+
+//get all users
+app.get("/", function(req, res, next){
+	db.any("SELECT * FROM users")
+	.then(function(users){
+		res.render("index", {users: users});
+	})
+	.catch(function(err){
+		return next(err);
+	});
+});
+
+app.get("/users/:id", function(req,res,next){
+	db.task(t=> {
+		return t.one("SELECT * FROM users WHERE user_id=$1", req.params.id)
+			.then(user=> {
+				return t.any("SELECT * FROM pics WHERE user_id=$1", user.user_id);
+			});
+	})
+	.then(pics=> {
+		res.render("user", {name: user.name, pics: pics});
+	})_
+	.catch(error=> {
+		return next(error);
+	});
+});
+
+
+app.listen(80, function(){
+	console.log("New Instapic app listening on port 80!");
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+{
+  "name": "new_instapic",
+  "version": "1.0.0",
+  "description": "Full stack site that allows users to login and post pictures for viewing.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rramphal100/new_instapic.git"
+  },
+  "author": "Ryan Ramphal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rramphal100/new_instapic/issues"
+  },
+  "homepage": "https://github.com/rramphal100/new_instapic#readme",
+  "dependencies": {
+    "bluebird": "^3.4.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "hbs": "^4.0.0",
+    "path": "^0.12.7",
+    "pg-promise": "^4.7.8"
+  }
+}
